@@ -52,7 +52,7 @@ git push -u origin main
 | **Production branch** | `main` |
 | **Framework preset** | `SvelteKit` |
 | **Build command** | `npm run build` |
-| **Build output directory** | `.svelte-kit/cloudflare` |
+| **Build output directory** | `build` |
 
 #### 4단계: 환경 변수 (선택사항)
 환경 변수가 필요한 경우 추가:
@@ -88,7 +88,7 @@ npm run build
 
 #### 4단계: 배포
 ```bash
-npx wrangler pages deploy .svelte-kit/cloudflare
+npx wrangler pages deploy build
 ```
 
 프로젝트 이름 입력 요청 시:
@@ -96,21 +96,28 @@ npx wrangler pages deploy .svelte-kit/cloudflare
 career-summary
 ```
 
+> **참고**: wrangler CLI는 선택사항입니다. 웹 대시보드를 통한 배포를 추천합니다.
+
 ## 🔧 프로젝트 설정
 
-### adapter-cloudflare 설정 완료 ✅
+### adapter-static 설정 완료 ✅
 
-`svelte.config.js`가 이미 Cloudflare용으로 설정되어 있습니다:
+`svelte.config.js`가 정적 사이트 배포용으로 설정되어 있습니다:
 
 ```javascript
-import adapter from '@sveltejs/adapter-cloudflare';
+import adapter from '@sveltejs/adapter-static';
 
 const config = {
   kit: {
-    adapter: adapter()
+    adapter: adapter({
+      pages: 'build',
+      assets: 'build'
+    })
   }
 };
 ```
+
+모든 페이지가 빌드 시 사전 렌더링되어 순수 정적 사이트로 배포됩니다.
 
 ### 빌드 확인
 
@@ -120,7 +127,7 @@ const config = {
 npm run build
 ```
 
-빌드 성공 시 `.svelte-kit/cloudflare` 폴더가 생성됩니다.
+빌드 성공 시 `build` 폴더가 생성됩니다.
 
 ### 미리보기
 

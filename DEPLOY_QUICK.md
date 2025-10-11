@@ -2,15 +2,7 @@
 
 ## 📋 3단계로 배포하기
 
-### 1️⃣ 준비사항
-
-먼저 wrangler를 설치하세요:
-
-```bash
-npm install -D wrangler
-```
-
-### 2️⃣ GitHub에 푸시
+### 1️⃣ GitHub에 푸시
 
 ```bash
 # Git 초기화 (아직 안했다면)
@@ -27,7 +19,7 @@ git remote add origin https://github.com/YOUR_USERNAME/career_summary.git
 git push -u origin main
 ```
 
-### 3️⃣ Cloudflare Pages에서 배포
+### 2️⃣ Cloudflare Pages에서 배포
 
 #### A. 웹 대시보드 방법 (추천) 👍
 
@@ -40,31 +32,36 @@ git push -u origin main
 ```
 Framework preset: SvelteKit
 Build command: npm run build
-Build output directory: .svelte-kit/cloudflare
+Build output directory: build
 ```
 
 6. **Save and Deploy** 클릭!
 
 완료! 약 2분 후 `https://YOUR-PROJECT.pages.dev`에서 확인 가능합니다.
 
-#### B. CLI 방법
+#### B. CLI 방법 (선택사항)
+
+wrangler CLI 사용 시:
 
 ```bash
+# wrangler 설치 (처음만)
+npm install -g wrangler
+
 # 로그인
-npx wrangler login
+wrangler login
 
 # 빌드
 npm run build
 
 # 배포
-npx wrangler pages deploy .svelte-kit/cloudflare
+wrangler pages deploy build
 ```
 
 ## ✅ 체크리스트
 
 배포 전 확인:
-- [ ] `npm install -D wrangler` 실행
 - [ ] Git 저장소에 푸시 완료
+- [ ] `npm run build` 로컬 빌드 테스트 성공
 - [ ] 프로필 이미지가 `static/images/` 폴더에 있음
 
 ## 🎯 배포 URL

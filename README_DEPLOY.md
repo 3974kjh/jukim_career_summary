@@ -4,20 +4,16 @@ Cloudflare Pages 배포 설정이 완료되었습니다.
 
 ## ✅ 완료된 작업
 
-1. ✅ `@sveltejs/adapter-cloudflare` 설치
-2. ✅ `svelte.config.js` Cloudflare 설정 변경
-3. ✅ `.gitignore` 파일 생성
-4. ✅ 배포 가이드 문서 작성
+1. ✅ `@sveltejs/adapter-static` 설치 (정적 사이트 배포)
+2. ✅ `svelte.config.js` 정적 사이트 설정 완료
+3. ✅ `src/routes/+layout.js` 프리렌더 설정 추가
+4. ✅ `.gitignore` 파일 생성
+5. ✅ 빌드 테스트 완료
+6. ✅ 배포 가이드 문서 작성
 
 ## 📝 다음 단계
 
-### 1. wrangler 설치 (필요시)
-
-```bash
-npm install -D wrangler
-```
-
-### 2. GitHub에 푸시
+### 1. GitHub에 푸시
 
 ```bash
 git init
@@ -27,7 +23,7 @@ git remote add origin https://github.com/YOUR_USERNAME/career_summary.git
 git push -u origin main
 ```
 
-### 3. Cloudflare Pages에서 배포
+### 2. Cloudflare Pages에서 배포
 
 **웹 대시보드 방법 (가장 쉬움):**
 
@@ -40,7 +36,7 @@ git push -u origin main
 Project name: career-summary
 Framework preset: SvelteKit  
 Build command: npm run build
-Build output directory: .svelte-kit/cloudflare
+Build output directory: build
 ```
 
 5. **Save and Deploy** 클릭!
@@ -65,13 +61,21 @@ https://career-summary.pages.dev
 
 ### svelte.config.js
 ```javascript
-import adapter from '@sveltejs/adapter-cloudflare';
+import adapter from '@sveltejs/adapter-static';
 
 const config = {
   kit: {
-    adapter: adapter()
+    adapter: adapter({
+      pages: 'build',
+      assets: 'build'
+    })
   }
 };
+```
+
+### src/routes/+layout.js
+```javascript
+export const prerender = true;  // 모든 페이지를 빌드 시 사전 렌더링
 ```
 
 ### .gitignore
@@ -93,11 +97,9 @@ npm install
 npm run build
 ```
 
-### wrangler 설치 에러
+### 빌드 시 "dynamic routes" 에러
 
-```bash
-npm install -D wrangler --legacy-peer-deps
-```
+이미 해결됨! `+layout.js`에 `prerender = true` 설정 완료.
 
 ## 🎉 완료!
 
