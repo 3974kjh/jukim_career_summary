@@ -42,6 +42,7 @@ export interface Education {
 	period: string;
 	degree: string;
 	major?: string;
+	link?: string;
 }
 
 export interface Presentation {

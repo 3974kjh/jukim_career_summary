@@ -191,14 +191,22 @@ export const experiences: Experience[] = [
 
 export const educations: Education[] = [
 	{
+		school: '42seoul',
+		period: '2021. 05 ~ 2021. 10',
+		degree: '4기 본과정 중퇴',
+		link: 'https://www.42seoul.kr/seoul42/main/view'
+	},
+	{
 		school: '경북대학교',
 		period: '2019. 03 ~ 2021. 02',
-		degree: '전자공학부 학사 졸업'
+		degree: '전자공학부 학사 졸업',
+		link: 'https://see.knu.ac.kr/'
 	},
 	{
 		school: '대구대학교',
 		period: '2015. 03 ~ 2019. 02',
-		degree: '전기전자공학과 학사 중퇴'
+		degree: '전기전자공학과 학사 중퇴',
+		link: 'https://www.daegu.ac.kr/page/1823'
 	}
 ];
 
