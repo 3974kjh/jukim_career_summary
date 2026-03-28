@@ -11,7 +11,7 @@
 </script>
 
 <Section title="EDUCATION" id="education">
-	<div class="space-y-4">
+	<div class="space-y-4 print:space-y-2">
 		{#each educations as education (education.school + education.period)}
 			<div class="rounded-lg border border-gray-200 bg-white p-5 shadow-sm">
 				<div class="flex items-start gap-4">

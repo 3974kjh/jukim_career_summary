@@ -13,7 +13,9 @@
 	const durationLabel = $derived(getExperienceDurationLabel(experience));
 </script>
 
-<div class="relative rounded-lg border border-gray-200 bg-white p-6 shadow-sm transition-shadow hover:shadow-md">
+<div
+	class="relative rounded-lg border border-gray-200 bg-white p-6 shadow-sm transition-shadow hover:shadow-md"
+>
 	{#if experience.current}
 		<div class="absolute right-4 top-4">
 			<span class="rounded-full bg-green-100 px-3 py-1 text-xs font-semibold text-green-700">

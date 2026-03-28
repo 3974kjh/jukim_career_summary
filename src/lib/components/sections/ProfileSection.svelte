@@ -11,7 +11,9 @@
 	let { profile }: Props = $props();
 </script>
 
-<div class="mb-12 rounded-xl bg-gradient-to-br from-blue-50 to-purple-50 p-8 shadow-lg">
+<div
+	class="mb-12 rounded-xl bg-gradient-to-br from-blue-50 to-purple-50 p-8 shadow-lg print:mb-4 print:shadow-none print:ring-1 print:ring-gray-200"
+>
 	<div class="flex flex-col items-center gap-6 md:flex-row">
 		<ProfileImage src={profile.image} alt={profile.name} />
 

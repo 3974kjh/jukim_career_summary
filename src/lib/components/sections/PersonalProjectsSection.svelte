@@ -9,9 +9,7 @@
 
 	let { categories }: Props = $props();
 
-	const totalProjectCount = $derived(
-		categories.reduce((sum, cat) => sum + cat.projects.length, 0)
-	);
+	const totalProjectCount = $derived(categories.reduce((sum, cat) => sum + cat.projects.length, 0));
 
 	function implLabel(p: PersonalProject): string {
 		if (p.implementation === 'direct') return '직접 구현';
@@ -29,14 +27,14 @@
 
 <Section title="PERSONAL PROJECTS" subtitle="개인 프로젝트" id="personal-projects">
 	<div
-		class="mb-8 rounded-xl border border-gray-200 bg-gradient-to-b from-gray-50/90 to-white px-4 py-4 sm:px-5"
+		class="mb-8 rounded-xl border border-gray-200 bg-gradient-to-b from-gray-50/90 to-white px-4 py-4 sm:px-5 print:mb-4 print:py-3"
 	>
 		<p class="mb-4 text-base font-semibold text-gray-900">
 			총
-			<span class="tabular-nums text-blue-700">{totalProjectCount}</span>
+			<span class="text-blue-700 tabular-nums">{totalProjectCount}</span>
 			개 프로그램 개발
 		</p>
-		<p class="mb-3 text-xs font-semibold uppercase tracking-wide text-gray-500">
+		<p class="mb-3 text-xs font-semibold tracking-wide text-gray-500 uppercase">
 			기술 스택 · 구현 방식
 		</p>
 		<dl class="space-y-2.5 text-sm">
@@ -65,10 +63,12 @@
 		</div>
 	</div>
 
-	<div class="space-y-10">
+	<div class="space-y-10 print:space-y-4">
 		{#each categories as cat (cat.id)}
 			<div>
-				<h3 class="mb-4 flex flex-wrap items-baseline gap-x-2 border-b border-gray-200 pb-2 text-lg font-semibold text-gray-900">
+				<h3
+					class="mb-4 flex flex-wrap items-baseline gap-x-2 border-b border-gray-200 pb-2 text-lg font-semibold text-gray-900 print:mb-2 print:border-0 print:pb-0 print:text-base"
+				>
 					<span>{cat.title}</span>
 					<span class="text-base font-normal text-gray-500">({cat.projects.length}개)</span>
 				</h3>
@@ -78,7 +78,7 @@
 							class="flex flex-col rounded-lg border border-gray-200 bg-white p-4 shadow-sm transition-shadow hover:shadow-md"
 						>
 							<div class="mb-2 flex flex-wrap items-start justify-between gap-2">
-								<h4 class="min-w-0 flex-1 text-base font-semibold leading-snug text-gray-900">
+								<h4 class="min-w-0 flex-1 text-base leading-snug font-semibold text-gray-900">
 									{project.title}
 								</h4>
 								<span

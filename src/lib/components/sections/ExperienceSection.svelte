@@ -12,7 +12,7 @@
 </script>
 
 <Section title="EXPERIENCE" subtitle={totalDuration} id="experience">
-	<div class="space-y-6">
+	<div class="space-y-6 print:space-y-3">
 		{#each experiences as experience (experience.company + experience.startedAt)}
 			<ExperienceCard {experience} />
 		{/each}

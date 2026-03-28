@@ -46,5 +46,12 @@ export default defineConfig(
 			// 동적 외부 URL(GitHub·Pages) — resolve() 대상 아님
 			'svelte/no-navigation-without-resolve': 'off'
 		}
+	},
+	{
+		files: ['**/ProjectDetailCard.svelte'],
+		rules: {
+			// 성과/추가 섹션 본문에 파싱된 https URL — resolve() 대상 아님
+			'svelte/no-navigation-without-resolve': 'off'
+		}
 	}
 );

@@ -6,23 +6,42 @@
 
 body {
 	margin: 0;
-	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
-		'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+	font-family:
+		-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell',
+		'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
 
 @media print {
-	nav {
-		display: none;
+	@page {
+		size: A4;
+		/* 위·아래·좌우 적당한 여백 */
+		margin: 10mm 12mm;
+	}
+
+	html {
+		margin: 0;
+		padding: 0;
+		font-size: 11pt;
 	}
 
 	.no-print {
-		display: none;
+		display: none !important;
 	}
 
 	body {
+		margin: 0 !important;
+		padding: 0 !important;
 		background: white !important;
+		print-color-adjust: exact;
+		-webkit-print-color-adjust: exact;
+	}
+
+	/* 본문 폭·여백 — 페이지에서 잘리지 않도록 */
+	main {
+		width: 100% !important;
+		max-width: 100% !important;
 	}
 
 	a {
@@ -30,9 +49,27 @@ body {
 		text-decoration: none;
 	}
 
+	/* 브라우저 PDF 저장 시 http(s) 링크는 href 유지 — 클릭 시 이동 */
+	a[href^='http'] {
+		color: #1d4ed8 !important;
+		text-decoration: underline !important;
+		text-underline-offset: 2px;
+	}
+
 	.shadow-sm,
 	.shadow-md,
 	.shadow-lg {
 		box-shadow: none !important;
+	}
+
+	/* 리스트·문단 고아/과부 줄 완화 */
+	p,
+	li {
+		orphans: 3;
+		widows: 3;
+	}
+
+	.sticky {
+		position: static !important;
 	}
 }

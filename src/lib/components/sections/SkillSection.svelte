@@ -11,7 +11,7 @@
 </script>
 
 <Section title="SKILL" id="skills">
-	<div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+	<div class="grid gap-4 print:gap-2 sm:grid-cols-2 lg:grid-cols-3">
 		{#each skills as skill (skill.category)}
 			<SkillGroup {skill} />
 		{/each}
