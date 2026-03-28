@@ -5,6 +5,7 @@
 	import ExperienceSection from '$lib/components/sections/ExperienceSection.svelte';
 	import EducationSection from '$lib/components/sections/EducationSection.svelte';
 	import ArticleSection from '$lib/components/sections/ArticleSection.svelte';
+	import PersonalProjectsSection from '$lib/components/sections/PersonalProjectsSection.svelte';
 
 	import {
 		profile,
@@ -12,9 +13,12 @@
 		skills,
 		experiences,
 		educations,
-		articles,
-		totalExperienceDuration
+		articles
 	} from '$lib/data/resume';
+	import { personalProjectCategories } from '$lib/data/personalProjects';
+	import { getTotalCareerLabel } from '$lib/utils/careerDuration';
+
+	const totalCareerLabel = $derived(getTotalCareerLabel(experiences));
 </script>
 
 <svelte:head>
@@ -33,6 +37,7 @@
 					<a href="#skills" class="text-gray-600 hover:text-gray-900">기술</a>
 					<a href="#experience" class="text-gray-600 hover:text-gray-900">경력</a>
 					<a href="#education" class="text-gray-600 hover:text-gray-900">학력</a>
+					<a href="#personal-projects" class="text-gray-600 hover:text-gray-900">개인 프로젝트</a>
 					<a href="#articles" class="text-gray-600 hover:text-gray-900">아티클</a>
 				</div>
 			</div>
@@ -52,10 +57,13 @@
 			<SkillSection {skills} />
 
 			<!-- Experience -->
-			<ExperienceSection {experiences} totalDuration={totalExperienceDuration} />
+			<ExperienceSection {experiences} totalDuration={totalCareerLabel} />
 
 			<!-- Education -->
 			<EducationSection {educations} />
+
+			<!-- Personal projects -->
+			<PersonalProjectsSection categories={personalProjectCategories} />
 
 			<!-- Articles -->
 			<ArticleSection {articles} />

@@ -12,12 +12,10 @@
 </script>
 
 <Section title="EXPERIENCE" subtitle={totalDuration} id="experience">
-	{#snippet children()}
-		<div class="space-y-6">
-			{#each experiences as experience}
-				<ExperienceCard {experience} />
-			{/each}
-		</div>
-	{/snippet}
+	<div class="space-y-6">
+		{#each experiences as experience (experience.company + experience.startedAt)}
+			<ExperienceCard {experience} />
+		{/each}
+	</div>
 </Section>
 

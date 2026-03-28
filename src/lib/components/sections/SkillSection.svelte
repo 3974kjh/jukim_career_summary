@@ -11,12 +11,10 @@
 </script>
 
 <Section title="SKILL" id="skills">
-	{#snippet children()}
-		<div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-			{#each skills as skill}
-				<SkillGroup {skill} />
-			{/each}
-		</div>
-	{/snippet}
+	<div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+		{#each skills as skill (skill.category)}
+			<SkillGroup {skill} />
+		{/each}
+	</div>
 </Section>
 

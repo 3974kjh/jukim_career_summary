@@ -19,9 +19,12 @@ export { default as SkillSection } from './components/sections/SkillSection.svel
 export { default as ExperienceSection } from './components/sections/ExperienceSection.svelte';
 export { default as EducationSection } from './components/sections/EducationSection.svelte';
 export { default as ArticleSection } from './components/sections/ArticleSection.svelte';
+export { default as PersonalProjectsSection } from './components/sections/PersonalProjectsSection.svelte';
 
 // Export utilities
 export * from './utils/techIcons';
+export * from './utils/careerDuration';
 
 // Export data
 export * from './data/resume';
+export { personalProjectCategories } from './data/personalProjects';

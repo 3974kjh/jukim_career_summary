@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { Experience } from '$lib/types';
+	import { getExperienceDurationLabel } from '$lib/utils/careerDuration';
 	import { Briefcase, Calendar, Building2 } from 'lucide-svelte';
 	import ProjectDetailCard from './ProjectDetailCard.svelte';
 
@@ -8,6 +9,8 @@
 	}
 
 	let { experience }: Props = $props();
+
+	const durationLabel = $derived(getExperienceDurationLabel(experience));
 </script>
 
 <div class="relative rounded-lg border border-gray-200 bg-white p-6 shadow-sm transition-shadow hover:shadow-md">
@@ -33,7 +36,7 @@
 					</div>
 					<div class="flex items-center gap-1">
 						<Briefcase class="h-4 w-4" />
-						<span>{experience.duration}</span>
+						<span>{durationLabel}</span>
 					</div>
 				</div>
 			</div>

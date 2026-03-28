@@ -16,7 +16,19 @@
 		expandedSections[index] = !expandedSections[index];
 	}
 
-	// URL을 감지하고 링크로 변환하는 함수
+	/** 성과 문자열이 `@근거`로 시작하면 들여쓰기·보조 스타일 적용(표시 시 키워드는 제거) */
+	const RATIONALE_KEYWORD = '@근거';
+
+	function isRationaleLine(text: string): boolean {
+		return text.trimStart().startsWith(RATIONALE_KEYWORD);
+	}
+
+	function achievementBodyForDisplay(text: string): string {
+		const t = text.trimStart();
+		if (!t.startsWith(RATIONALE_KEYWORD)) return text;
+		return t.slice(RATIONALE_KEYWORD.length).replace(/^\s+/, '');
+	}
+
 	function parseTextWithLinks(text: string): Array<{ type: 'text' | 'link'; content: string }> {
 		const urlRegex = /(https?:\/\/[^\s]+)/g;
 		const parts: Array<{ type: 'text' | 'link'; content: string }> = [];
@@ -44,21 +56,63 @@
 
 <div class="rounded-lg border-l-4 border-blue-500 bg-gray-50 p-5">
 	<div class="mb-3">
-		<div class="mb-2 flex items-center gap-2 text-sm text-gray-600">
-			<Calendar class="h-4 w-4" />
-			<span class="font-medium">{project.period}</span>
+		<div
+			class="mb-3 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm leading-5 text-gray-600"
+		>
+			<Calendar class="h-4 w-4 shrink-0 text-gray-500" />
+			<span class="font-medium tabular-nums leading-5 text-gray-600">{project.period}</span>
+			<span class="shrink-0 text-gray-300" aria-hidden="true">·</span>
+			<span class="min-w-0 leading-5 text-gray-500">{project.position}</span>
 		</div>
-		<h4 class="mb-2 text-lg font-semibold text-gray-900">{project.position}</h4>
-		<p class="mb-3 text-gray-700">{project.description}</p>
+		<p class="mb-3 text-lg font-semibold leading-snug text-gray-900 sm:text-xl">
+			{project.description}
+		</p>
+		{#if project.workSplit}
+			<div class="mb-3 rounded-md border border-gray-200 bg-white px-3 py-2 text-sm text-gray-700">
+				<p class="mb-1.5 text-xs font-semibold uppercase tracking-wide text-gray-500">
+					업무 비중
+				</p>
+				<div class="grid w-full grid-cols-2 items-baseline gap-x-2 gap-y-1">
+					<span class="min-w-0 justify-self-start text-left"
+						>프론트엔드 개발 <span class="font-semibold tabular-nums text-blue-700"
+							>{project.workSplit.frontend}%</span
+						></span
+					>
+					<span class="min-w-0 justify-self-end text-right"
+						>백엔드 개발 <span class="font-semibold tabular-nums text-green-600"
+							>{project.workSplit.backend}%</span
+						></span
+					>
+				</div>
+				<div class="mt-2 flex h-2 w-full overflow-hidden rounded-full bg-gray-100">
+					<div
+						class="h-full bg-blue-500 transition-[width]"
+						style="width: {project.workSplit.frontend}%"
+						aria-hidden="true"
+					></div>
+					<div
+						class="h-full bg-green-500 transition-[width]"
+						style="width: {project.workSplit.backend}%"
+						aria-hidden="true"
+					></div>
+				</div>
+			</div>
+		{/if}
 	</div>
 
 	{#if project.achievements.length > 0}
 		<ul class="mb-4 space-y-2">
 			{#each project.achievements as achievement}
-				<li class="flex gap-2 text-sm text-gray-700">
-					<span class="text-blue-600">•</span>
-					<span>
-						{#each parseTextWithLinks(achievement) as part}
+				<li
+					class="flex gap-2 text-sm {isRationaleLine(achievement)
+						? 'ml-6 border-l-2 border-gray-200 pl-4 text-gray-600'
+						: 'text-gray-700'}"
+				>
+					{#if !isRationaleLine(achievement)}
+						<span class="shrink-0 text-blue-600">•</span>
+					{/if}
+					<span class="min-w-0 {isRationaleLine(achievement) ? 'block' : ''}">
+						{#each parseTextWithLinks(achievementBodyForDisplay(achievement)) as part}
 							{#if part.type === 'link'}
 								<a
 									href={part.content}

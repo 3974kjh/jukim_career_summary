@@ -39,5 +39,12 @@ export default defineConfig(
 				svelteConfig
 			}
 		}
+	},
+	{
+		files: ['**/PersonalProjectsSection.svelte'],
+		rules: {
+			// 동적 외부 URL(GitHub·Pages) — resolve() 대상 아님
+			'svelte/no-navigation-without-resolve': 'off'
+		}
 	}
 );

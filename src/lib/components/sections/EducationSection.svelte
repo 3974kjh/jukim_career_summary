@@ -11,41 +11,39 @@
 </script>
 
 <Section title="EDUCATION" id="education">
-	{#snippet children()}
-		<div class="space-y-4">
-			{#each educations as education}
-				<div class="rounded-lg border border-gray-200 bg-white p-5 shadow-sm">
-					<div class="flex items-start gap-4">
-						{#if education.link}
-							<a
-								href={education.link}
-								target="_blank"
-								rel="noopener noreferrer"
-								class="rounded-lg bg-blue-100 p-3 transition-all hover:bg-blue-200 hover:shadow-md"
-								aria-label={`${education.school} 웹사이트 방문`}
-							>
-								<GraduationCap class="h-6 w-6 text-blue-600" />
-							</a>
-						{:else}
-							<div class="rounded-lg bg-blue-100 p-3">
-								<GraduationCap class="h-6 w-6 text-blue-600" />
-							</div>
+	<div class="space-y-4">
+		{#each educations as education (education.school + education.period)}
+			<div class="rounded-lg border border-gray-200 bg-white p-5 shadow-sm">
+				<div class="flex items-start gap-4">
+					{#if education.link}
+						<a
+							href={education.link}
+							target="_blank"
+							rel="noopener noreferrer"
+							class="rounded-lg bg-blue-100 p-3 transition-all hover:bg-blue-200 hover:shadow-md"
+							aria-label={`${education.school} 웹사이트 방문`}
+						>
+							<GraduationCap class="h-6 w-6 text-blue-600" />
+						</a>
+					{:else}
+						<div class="rounded-lg bg-blue-100 p-3">
+							<GraduationCap class="h-6 w-6 text-blue-600" />
+						</div>
+					{/if}
+					<div class="flex-1">
+						<h3 class="mb-1 text-lg font-bold text-gray-900">{education.school}</h3>
+						<p class="mb-2 text-gray-700">{education.degree}</p>
+						{#if education.major}
+							<p class="mb-2 text-sm text-gray-600">{education.major}</p>
 						{/if}
-						<div class="flex-1">
-							<h3 class="mb-1 text-lg font-bold text-gray-900">{education.school}</h3>
-							<p class="mb-2 text-gray-700">{education.degree}</p>
-							{#if education.major}
-								<p class="mb-2 text-sm text-gray-600">{education.major}</p>
-							{/if}
-							<div class="flex items-center gap-1 text-sm text-gray-500">
-								<Calendar class="h-4 w-4" />
-								<span>{education.period}</span>
-							</div>
+						<div class="flex items-center gap-1 text-sm text-gray-500">
+							<Calendar class="h-4 w-4" />
+							<span>{education.period}</span>
 						</div>
 					</div>
 				</div>
-			{/each}
-		</div>
-	{/snippet}
+			</div>
+		{/each}
+	</div>
 </Section>
 
