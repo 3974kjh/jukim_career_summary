@@ -114,6 +114,7 @@ export const personalProjectCategories: PersonalProjectCategory[] = [
 			{
 				title: 'bout-web',
 				githubUrl: 'https://github.com/3974kjh/bout-web',
+				deployUrl: 'https://bout-web.pages.dev/',
 				stack: ['SvelteKit', 'Three.js'],
 				implementation: 'vibe',
 				description: `3D 웹 기반 뱀서라이크 게임, 저장된 데이터는 indexDB로 관리`
