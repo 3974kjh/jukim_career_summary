@@ -427,6 +427,18 @@ export const articles: Article[] = [
 	{
 		title: 'C#과 Entity Framework를 활용한 진료비 계산 로직 구현',
 		date: '2023.05'
+	},
+	{
+		title: 'gRPC/Entity Framework 학습 및 병원관리 기획서 작성',
+		date: '2022.10'
+	},
+	{
+		title: '메디칼소프트 히포크라테스 제품 분석 및 자료 정리',
+		date: '2022.5'
+	},
+	{
+		title: '환자영상관리프로그램 Client-Server-DB 아키텍처 구현',
+		date: '2022.01'
 	}
 ];
 
