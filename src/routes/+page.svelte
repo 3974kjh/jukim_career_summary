@@ -12,11 +12,38 @@
 	import { personalProjectCategories } from '$lib/data/personalProjects';
 	import { getTotalCareerLabel } from '$lib/utils/careerDuration';
 	import { FileDown } from 'lucide-svelte';
+	import PdfExportModal from '$lib/components/ui/PdfExportModal.svelte';
 
 	const totalCareerLabel = $derived(getTotalCareerLabel(experiences));
 
-	function savePageAsPdf() {
+	let pdfModalOpen = $state(false);
+
+	function savePageAsPdf(includePersonal: boolean) {
 		if (!browser) return;
+		pdfModalOpen = false;
+
+		const root = document.documentElement;
+		const restoredHrefs: { element: HTMLAnchorElement; href: string }[] = [];
+
+		if (!includePersonal) {
+			root.setAttribute('data-pdf-personal', 'hidden');
+			document.querySelectorAll<HTMLAnchorElement>('a[data-career-home]').forEach((element) => {
+				const href = element.getAttribute('href');
+				if (!href) return;
+				restoredHrefs.push({ element, href });
+				element.removeAttribute('href');
+			});
+		}
+
+		const cleanup = () => {
+			root.removeAttribute('data-pdf-personal');
+			for (const { element, href } of restoredHrefs) {
+				element.setAttribute('href', href);
+			}
+			window.removeEventListener('afterprint', cleanup);
+		};
+
+		window.addEventListener('afterprint', cleanup);
 		window.print();
 	}
 </script>
@@ -42,7 +69,7 @@
 					<button
 						type="button"
 						class="no-print inline-flex items-center gap-1.5 rounded-md border border-gray-300 bg-white px-2.5 py-1.5 font-medium text-gray-800 shadow-sm hover:bg-gray-50"
-						onclick={savePageAsPdf}
+						onclick={() => (pdfModalOpen = true)}
 					>
 						<FileDown class="h-4 w-4 shrink-0" aria-hidden="true" />
 						PDF 다운로드
@@ -51,6 +78,12 @@
 			</div>
 		</div>
 	</nav>
+
+	<PdfExportModal
+		open={pdfModalOpen}
+		onclose={() => (pdfModalOpen = false)}
+		onconfirm={savePageAsPdf}
+	/>
 
 	<!-- PDF/인쇄 전용 머리글 (화면에서는 숨김) -->
 	<header

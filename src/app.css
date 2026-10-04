@@ -30,6 +30,11 @@ body {
 		display: none !important;
 	}
 
+	html[data-pdf-personal='hidden'] .personal-sensitive,
+	html[data-pdf-personal='hidden'] .profile-card {
+		display: none !important;
+	}
+
 	body {
 		margin: 0 !important;
 		padding: 0 !important;

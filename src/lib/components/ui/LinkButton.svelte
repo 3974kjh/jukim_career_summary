@@ -6,16 +6,17 @@
 		icon?: ComponentType;
 		label?: string;
 		external?: boolean;
+		class?: string;
 	}
 
-	let { href, icon, label, external = true }: Props = $props();
+	let { href, icon, label, external = true, class: className = '' }: Props = $props();
 </script>
 
 <a
 	{href}
 	target={external ? '_blank' : '_self'}
 	rel={external ? 'noopener noreferrer' : ''}
-	class="inline-flex items-center gap-2 rounded-lg bg-gray-100 px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-200"
+	class="inline-flex items-center gap-2 rounded-lg bg-gray-100 px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-200 {className}"
 >
 	{#if icon}
 		{@const IconComponent = icon}

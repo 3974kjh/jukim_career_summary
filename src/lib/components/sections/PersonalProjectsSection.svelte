@@ -17,6 +17,17 @@
 		return '직접 + 바이브 혼합';
 	}
 
+	const careerHomeHost = 'jukim-career-summary.pages.dev';
+
+	function isCareerHome(url?: string): boolean {
+		if (!url) return false;
+		try {
+			return new URL(url).hostname === careerHomeHost;
+		} catch {
+			return false;
+		}
+	}
+
 	function implClass(p: PersonalProject): string {
 		if (p.implementation === 'direct')
 			return 'bg-emerald-50 text-emerald-800 ring-1 ring-emerald-200';
@@ -120,6 +131,7 @@
 										href={project.deployUrl}
 										target="_blank"
 										rel="external noopener noreferrer"
+										data-career-home={isCareerHome(project.deployUrl) ? 'true' : undefined}
 										class="inline-flex items-center gap-1 font-medium text-gray-700 hover:text-blue-600"
 									>
 										<Globe class="h-4 w-4" />

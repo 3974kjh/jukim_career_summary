@@ -12,15 +12,19 @@
 </script>
 
 <div
-	class="mb-12 rounded-xl bg-gradient-to-br from-blue-50 to-purple-50 p-8 shadow-lg print:mb-4 print:shadow-none print:ring-1 print:ring-gray-200"
+	class="profile-card mb-12 rounded-xl bg-gradient-to-br from-blue-50 to-purple-50 p-8 shadow-lg print:mb-4 print:shadow-none print:ring-1 print:ring-gray-200"
 >
 	<div class="flex flex-col items-center gap-6 md:flex-row">
-		<ProfileImage src={profile.image} alt={profile.name} />
+		<div class="personal-sensitive">
+			<ProfileImage src={profile.image} alt={profile.name} />
+		</div>
 
 		<div class="flex-1 text-center md:text-left">
 			<h1 class="mb-2 text-4xl font-bold text-gray-900">{profile.name}</h1>
-			
-			<div class="mb-4 flex flex-wrap items-center justify-center gap-2 md:justify-start">
+
+			<div
+				class="personal-sensitive mb-4 flex flex-wrap items-center justify-center gap-2 md:justify-start"
+			>
 				<a
 					href="mailto:{profile.email}"
 					class="flex items-center gap-1 text-gray-600 hover:text-blue-600"
@@ -36,13 +40,23 @@
 
 			<div class="flex flex-wrap justify-center gap-2 md:justify-start">
 				{#if profile.links.github}
-					<LinkButton href={profile.links.github} icon={Github} label="GitHub" />
+					<LinkButton
+						href={profile.links.github}
+						icon={Github}
+						label="GitHub"
+						class="personal-sensitive"
+					/>
 				{/if}
 				{#if profile.links.linkedin}
 					<LinkButton href={profile.links.linkedin} icon={Linkedin} label="LinkedIn" />
 				{/if}
 				{#if profile.links.blog}
-					<LinkButton href={profile.links.blog} icon={BookOpen} label="Blog" />
+					<LinkButton
+						href={profile.links.blog}
+						icon={BookOpen}
+						label="Blog"
+						class="personal-sensitive"
+					/>
 				{/if}
 				{#if profile.links.wiki}
 					<LinkButton href={profile.links.wiki} icon={BookOpen} label="Wiki" />
