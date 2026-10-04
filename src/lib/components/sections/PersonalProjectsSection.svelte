@@ -69,7 +69,7 @@
 		<div class="mt-4 border-t border-gray-200/80 pt-3 text-sm text-gray-600">
 			<div class="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:gap-4">
 				<dt class="shrink-0 font-medium text-gray-700 sm:w-32">바이브 코딩</dt>
-				<dd class="text-gray-600">Cursor (Opus 4.6, Sonnet 4.6)</dd>
+				<dd class="text-gray-600">Cursor</dd>
 			</div>
 		</div>
 	</div>
