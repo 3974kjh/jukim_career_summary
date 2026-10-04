@@ -6,12 +6,12 @@ export const personalProjectCategories: PersonalProjectCategory[] = [
 		title: '웹 프로그램',
 		projects: [
 			{
-				title: 'finance_website (주식·모의투자 등)',
+				title: 'finance_website (주식/모의투자 등)',
 				githubUrl: 'https://github.com/3974kjh/finance_website',
 				deployUrl: 'https://finance-website-687.pages.dev/',
 				stack: ['SvelteKit', 'Python', 'FastAPI', 'ngrok', 'Phaser 3'],
 				implementation: 'mixed',
-				description: '기반·전체 스타일·핵심 기능은 직접 구현. 실시간 뉴스·세계경제 이슈 달력·게임 화면 등은 바이브 코딩으로 추가·개선, 저장된 데이터는 .json 파일로 관리'
+				description: '기반/전체 스타일/핵심 기능은 직접 구현. 실시간 뉴스/세계경제 이슈 달력/게임 화면 등은 바이브 코딩으로 추가/개선, 저장된 데이터는 .json 파일로 관리'
 			},
 			{
 				title: 'make_opti_prompt',

@@ -21,7 +21,7 @@ SvelteKit 환경에서 Svelte와 TypeScript, Tailwind CSS를 주력으로 프론
 가까운 목표를 향해 가기 위해선 스스로의 노력이 중요할 수 있지만 긴 호흡으로 먼 목표를 향해 가기위해선 혼자만의 노력으론 불가능하다는 것을 잘 알고있습니다.
 
 팀과 함께 성장하고 또한 팀에게 좋은 영향력을 줄 수 있는 개발자가 되는 것이 저의 모토입니다.`,
-	updatedDate: '2026. 03. 28'
+	updatedDate: '2026. 10. 04'
 };
 
 export const skills: Skill[] = [
@@ -47,7 +47,7 @@ export const skills: Skill[] = [
 	},
 	{
 		category: 'AI',
-		items: ['claude', 'perplexity', 'manus', 'ollama (used local)']
+		items: ['Cursor', 'GPT', 'Perplexity', 'Manus', 'Ollama (used local)']
 	}
 ];
 
@@ -59,16 +59,69 @@ export const experiences: Experience[] = [
 		current: true,
 		projects: [
 			{
-				period: '2026. 01 ~ 현재',
+				period: '2026. 07 ~ 현재',
+				position: 'PMS 개발팀 진료 메인 개발자',
+				description:
+					'기존 로컬 기반 응용프로그램 OneClick(=치과 EMR 프로젝트)를 개선한 웹 클라우드 신규 서비스의 진료 메인 개발 담당',
+				workSplit: { frontend: 70, backend: 30 },
+				achievements: [
+					'원 버튼 관리, 환자 진료기록 조회, 진료기록 저장/진료완료 프로세스 로직 적용'
+				],
+				skills: ['Cursor', 'Svelte', 'SvelteKit', 'TypeScript', 'TailwindCSS'],
+				additionalSections: [
+					{
+						title: '원 버튼',
+						content:
+							'3 depth의 대분류, 중분류, 하위버튼 구조를 가지고 있으며 하위 버튼 내에는 버튼 속성 별 text메모 정보, 펜메모(=draw 이미지) 정보, 상병/처방/JX999/MX999/처방에 관련된 팝업/기타 등등 과 같은 정보들을 저장하고 있습니다.\n이 버튼들을 클릭하면 해당 속성과 저장된 정보에 따라 진료기록이 자동 저장되는 기능을 제공하고 있고 관련 기능 전체와 이런 프로세스에 대한 로직 설계를 진행했습니다.'
+					},
+					{
+						title: '진료기록 조회',
+						content:
+							'해당 환자의 전체 진료기록 (CC, MedicalAlert, 상병, 처방, CRM 예약 정보, 윈외처방전 정보, 동의서/제증명 정보, 메모/펜메모 정보, 타 진료 과별 정보 등등)을 진료일자별로 묶어 컨텐츠별로 표현하는 기능 구현'
+					},
+					{
+						title: '진료기록 저장',
+						content:
+							'진료기록 저장 시, 데이터 유효성 체크, 데이터 저장을 위한 데이터 형변환, 입력한 치식정보에 따른 횟수계산 처리, 청구점검 처리, 처방에 관련된 팝업 호출 등등 관련 로직 프로세스 구조 정리 및 구현'
+					},
+				]
+			},
+			{
+				period: '2026. 04 ~ 2026. 06',
+				position: 'PMS 개발팀 데스크, 진료 개발자',
+				description:
+					'기존 로컬 기반 응용프로그램 OneClick(=치과 EMR 프로젝트)를 개선한 웹 클라우드 신규 서비스의 데스크 개발 담당',
+				workSplit: { frontend: 70, backend: 30 },
+				achievements: [
+					'CloudX 데스크,진료 개발과 KIMES 대비 기존 진료 안정화를 병행하며, 데이터 구조 설계,시각화 알고리즘,공통 컴포넌트 구현을 담당',
+					'OneClick Tx/PI 데이터를 CloudX 구조로 이전하기 위해 계층 판별/ID 매핑/컬럼 변환 규칙과 DEFAULT 데이터 전환 SQL을 설계/검증',
+					'소개자 다이어그램의 방사형 레이아웃/노드 배치/애니메이션/금액 기반 크기 규칙을 정의하고, Canvas와 helper를 분리한 구조로 구현'
+				],
+				skills: ['Cursor', 'Svelte', 'SvelteKit', 'TypeScript', 'TailwindCSS'],
+				additionalSections: [
+					{
+						title: 'Tx/PI 데이터 마이그레이션',
+						content:
+							'OneClick의 TB_REMEDY_PACKAGE_TREE / TB_REMEDY_PACKAGE는 대/중/하위 버튼을 하나의 트리/패키지 모델로 표현하지만, CloudX는 mc_usersetcategory / mc_usersetgroup / mc_usersetdetail로 역할이 분리되어 있어 1:1 이관이 불가능했습니다. 이에 계층 판별 규칙, ID 매핑 테이블, 컬럼 변환 규칙을 스프레드시트로 정리하고 DEFAULT 데이터 기준 전환 SQL을 설계/검증하여 OneClick의 Tx/PI 데이터를 CloudX 형식으로 이전했습니다.'
+					},
+					{
+						title: '소개자 다이어그램 설계/구현',
+						content:
+							'데스크 차별 기능인 소개자 다이어그램은 ‘나’ 중심 방사형 레이아웃, 레벨별 가상 원 배치, 스테이지 애니메이션, 금액 기반 노드 크기 규칙을 명세로 고정했습니다. 이후 Canvas와 helper를 분리해 구현하여 레이아웃 규칙과 화면 렌더링 책임을 분리했습니다.'
+					},
+				]
+			},
+			{
+				period: '2026. 01 ~ 2026. 03',
 				position: 'PMS 웹개발팀 진료 메인 개발자',
 				description:
-					'KIMES 2026 전시 프로그램 출품 대응, 통합테스트 기반 오류·개선 반영 및 로직 리팩터링',
+					'KIMES 2026 전시 프로그램 출품 대응, 통합테스트 기반 오류/개선 반영 및 로직 리팩터링',
 				workSplit: { frontend: 100, backend: 0 },
 				achievements: [
-					'2026년 3월 19일~22일 KIMES 전시 출품을 위해 필요한 기능을 정리·구현하고 통합테스트 수행',
-					'통합테스트·전시 대비 과정에서 발견된 오류·개선 건 반영 개발 및 관련 로직 리팩터링'
+					'2026년 3월 19일~22일 KIMES 전시 출품을 위해 필요한 기능을 정리/구현하고 통합테스트 수행',
+					'통합테스트/전시 대비 과정에서 발견된 오류/개선 건 반영 개발 및 관련 로직 리팩터링'
 				],
-				skills: ['Svelte', 'SvelteKit', 'TypeScript', 'TailwindCSS'],
+				skills: ['Cursor', 'Svelte', 'SvelteKit', 'TypeScript', 'TailwindCSS'],
 				additionalSections: [
 					{
 						title: '참고 링크',
@@ -81,19 +134,20 @@ export const experiences: Experience[] = [
 				period: '2025. 07 ~ 2025. 12',
 				position: 'MPMS EMR 개발팀 진료 메인 개발자',
 				description:
-					'차별화 EMR(그룹처방·도킹·레이아웃)과 안정적 운영을 위한 로직 설계, Hippocrates2 진료 영역 Svelte 5 전환 및 개인 프로젝트로 역량 보강',
+					'차별화 EMR(그룹처방/도킹/레이아웃)과 안정적 운영을 위한 로직 설계, Hippocrates2 진료 영역 Svelte 5 전환 및 개인 프로젝트로 역량 보강',
 				workSplit: { frontend: 95, backend: 5 },
 				achievements: [
-					'그룹처방(Y/P/G/R) 도입으로 처방 추가 경로가 늘며 분기·중복이 커진 부분을, 처방Grid·HippoButton·이전진료기록·HippoPA 등 4가지 유입을 아우르도록 함수 공통화·로직 일반화',
-					'그룹처방 UI·데이터: 아이콘·툴팁, grid에 노출할 처방과 제외할 처방 분리, 전처리·후처리·저장 정합성, 하위 처방 속성 일괄 적용 규칙을 구현·보완',
-					'HippoMode·ClassicMode 과별특화 영역과 ClassicMode Editor에 DockView를 적용하고, 패널 사이즈·위치를 .svelte.ts에 정의한 $effect로 상태관리하여 실시간 동기화해 저장·복원 시 일관되게 읽을 수 있도록 공통화',
-					'ClassicMode 2단 레이아웃에서 에디터·상병 Grid·처방 Grid·하단 버튼 영역 높이를 조절하는 splitbar 데이터도 동일 패턴으로 동기화해 확장 가능한 레이아웃 설계',
-					'진료 VOC·Svelte 5 마이그레이션 이후 테스트 오류를 일정 내 일괄 수정, 회의에서 확정된 VOC 개선 과제를 일괄 구현',
-					'진료 관련 컴포넌트 Svelte 4→5 일괄 마이그레이션: runes에 맞게 구조를 재설계하고, DOM 반영을 위한 불필요한 재할당·tick 남용을 줄여 정합성과 동작 품질 개선',
-					'@근거 ① $state·$derived·$effect 등 룬으로, 바뀐 부분만 골라서 화면을 갱신하는 쪽에 가깝게 동작하고, 룬을 컴포넌트 밖에서도 써 상태 로직을 분리·재사용하기 쉬움 ② 반응형 여부가 명시되어 어떤 값이 다시 그리기를 유발하는지 읽기 쉽고, onMount 등과 달리 부수효과를 $effect 계열로 일관되게 관리 ③ 큰 리스트·테이블에서 일부만 바뀔 때 나머지를 불필요하게 다시 그리지 않도록 컴파일러가 추적·최적화 ④ $props·$bindable 등으로 props·이벤트 경계가 분명해져 타입 추론·컴포넌트 인터페이스 관리에 유리 ⑤ 런타임 반응성 모델이 통일되어 SvelteKit SSR/CSR 혼용 등에서도 같은 패턴으로 상태를 다루기 좋음 — 위를 종합해 전환',
-					'개인 프로젝트: 주식관리 웹(모의투자·차트·볼린저·골든크로스·AI 예측 지표), JSON Parser(반복값 제거·실패 시 줄·사유 검증), 네이버 증권 기반 실시간 주가 크롬 익스텐션 신규 구현'
+					'그룹처방(Y/P/G/R) 도입으로 처방 추가 경로가 늘며 분기/중복이 커진 부분을, 처방Grid/HippoButton/이전진료기록/HippoPA 등 4가지 유입을 아우르도록 함수 공통화/로직 일반화',
+					'그룹처방 UI/데이터: 아이콘/툴팁, grid에 노출할 처방과 제외할 처방 분리, 전처리/후처리/저장 정합성, 하위 처방 속성 일괄 적용 규칙을 구현/보완',
+					'HippoMode/ClassicMode 과별특화 영역과 ClassicMode Editor에 DockView를 적용하고, 패널 사이즈/위치를 .svelte.ts에 정의한 $effect로 상태관리하여 실시간 동기화해 저장/복원 시 일관되게 읽을 수 있도록 공통화',
+					'ClassicMode 2단 레이아웃에서 에디터/상병 Grid/처방 Grid/하단 버튼 영역 높이를 조절하는 splitbar 데이터도 동일 패턴으로 동기화해 확장 가능한 레이아웃 설계',
+					'진료 VOC/Svelte 5 마이그레이션 이후 테스트 오류를 일정 내 일괄 수정, 회의에서 확정된 VOC 개선 과제를 일괄 구현',
+					'진료 관련 컴포넌트 Svelte 4→5 일괄 마이그레이션: runes에 맞게 구조를 재설계하고, DOM 반영을 위한 불필요한 재할당/tick 남용을 줄여 정합성과 동작 품질 개선',
+					'@근거 ① $state/$derived/$effect 등 룬으로, 바뀐 부분만 골라서 화면을 갱신하는 쪽에 가깝게 동작하고, 룬을 컴포넌트 밖에서도 써 상태 로직을 분리/재사용하기 쉬움 ② 반응형 여부가 명시되어 어떤 값이 다시 그리기를 유발하는지 읽기 쉽고, onMount 등과 달리 부수효과를 $effect 계열로 일관되게 관리 ③ 큰 리스트/테이블에서 일부만 바뀔 때 나머지를 불필요하게 다시 그리지 않도록 컴파일러가 추적/최적화 ④ $props/$bindable 등으로 props/이벤트 경계가 분명해져 타입 추론/컴포넌트 인터페이스 관리에 유리 ⑤ 런타임 반응성 모델이 통일되어 SvelteKit SSR/CSR 혼용 등에서도 같은 패턴으로 상태를 다루기 좋음 — 위를 종합해 전환',
+					'개인 프로젝트: 주식관리 웹(모의투자/차트/볼린저/골든크로스/AI 예측 지표), JSON Parser(반복값 제거/실패 시 줄/사유 검증), 네이버 증권 기반 실시간 주가 크롬 익스텐션 신규 구현'
 				],
 				skills: [
+					'Cursor',
 					'Svelte',
 					'SvelteKit',
 					'TypeScript',
@@ -103,17 +157,17 @@ export const experiences: Experience[] = [
 					{
 						title: '기여한 점',
 						content:
-							'최근 6개월간 Hippocrates2에 666개 commit 기여(웹개발팀 13인 평균 288개 대비 약 2.3배).\nsvelte-splitpanes 검토 후 진료 메인 페이지에 적용. 도킹 구현을 위해 5개 라이브러리를 검토한 뒤 dockview 채택, JS 기반 dockview를 Svelte 5에서 쓰기 위한 공통 컴포넌트·커스텀 기능 구현.\n진료 VOC 오류에 빠르게 대응하고 상병·처방 Grid 기능을 고도화했으며, 진료 관련 컴포넌트 Svelte 5 전환을 마무리함.\n\n개인 프로젝트: https://github.com/3974kjh/finance_website\nhttps://github.com/3974kjh/perfect_json_parse\nhttps://github.com/3974kjh/watch_stock_extension'
+							'최근 6개월간 Hippocrates2에 666개 commit 기여(웹개발팀 13인 평균 288개 대비 약 2.3배).\nsvelte-splitpanes 검토 후 진료 메인 페이지에 적용. 도킹 구현을 위해 5개 라이브러리를 검토한 뒤 dockview 채택, JS 기반 dockview를 Svelte 5에서 쓰기 위한 공통 컴포넌트/커스텀 기능 구현.\n진료 VOC 오류에 빠르게 대응하고 상병/처방 Grid 기능을 고도화했으며, 진료 관련 컴포넌트 Svelte 5 전환을 마무리함.\n\n개인 프로젝트: https://github.com/3974kjh/finance_website\nhttps://github.com/3974kjh/perfect_json_parse\nhttps://github.com/3974kjh/watch_stock_extension'
 					},
 					{
 						title: '성장한 점',
 						content:
-							'Svelte 4로 안정적으로 동작하던 진료 컴포넌트를 Svelte 5로 옮기며 문법·관점 변화에 맞춰 구조를 다시 잡아야 하는 부담이 컸고, 재설계 과정에서 새 버그가 날까 걱정되기도 했습니다. 진행하면서 과도하거나 불필요한 변수·함수가 많았던 부분을 정리하며 로직 결함을 보완했고, 공통화·함수 관점 설계로 전환해 구조를 단순하고 확장 가능하게 다듬었습니다.\n\n“지금 잘 돌아가는 코드”가 곧 “손댈 필요 없는 코드”는 아니라는 점을 체감했고, 불안에 머무르기보다 “어떻게 해낼지”에 가까이 가는 태도가 더 나은 결과로 이어진다고 느꼈습니다. dockview를 팀이 쓰기 쉬운 Svelte 5 컴포넌트로 감싸며 props·콜백·함수명을 사용자 입장에서 맞추는 연습을 했고, 나만 아는 코드가 아니라 읽고 확장하기 쉬운 코드로 기여하는 쪽으로 한 단계 나아갔다고 생각합니다.'
+							'Svelte 4로 안정적으로 동작하던 진료 컴포넌트를 Svelte 5로 옮기며 문법/관점 변화에 맞춰 구조를 다시 잡아야 하는 부담이 컸고, 재설계 과정에서 새 버그가 날까 걱정되기도 했습니다. 진행하면서 과도하거나 불필요한 변수/함수가 많았던 부분을 정리하며 로직 결함을 보완했고, 공통화/함수 관점 설계로 전환해 구조를 단순하고 확장 가능하게 다듬었습니다.\n\n“지금 잘 돌아가는 코드”가 곧 “손댈 필요 없는 코드”는 아니라는 점을 체감했고, 불안에 머무르기보다 “어떻게 해낼지”에 가까이 가는 태도가 더 나은 결과로 이어진다고 느꼈습니다. dockview를 팀이 쓰기 쉬운 Svelte 5 컴포넌트로 감싸며 props/콜백/함수명을 사용자 입장에서 맞추는 연습을 했고, 나만 아는 코드가 아니라 읽고 확장하기 쉬운 코드로 기여하는 쪽으로 한 단계 나아갔다고 생각합니다.'
 					},
 					{
 						title: '개선할 점',
 						content:
-							'맡은 업무에 몰입하며 주변·팀 상황을 살피는 비중은 부족했습니다. 프로젝트는 개인 역량만으로 완성되기보다 구성원 간 시너지가 맞을 때 성과가 난다고 봅니다. 앞으로는 주기적으로 팀 상황을 확인하고, 동료가 설계나 오류 해결에 막힐 때 먼저 다가가 원인을 함께 정리·해결하고, 배운 점을 공유해 팀 전체의 생산성과 학습 속도에 기여하겠습니다.'
+							'맡은 업무에 몰입하며 주변/팀 상황을 살피는 비중은 부족했습니다. 프로젝트는 개인 역량만으로 완성되기보다 구성원 간 시너지가 맞을 때 성과가 난다고 봅니다. 앞으로는 주기적으로 팀 상황을 확인하고, 동료가 설계나 오류 해결에 막힐 때 먼저 다가가 원인을 함께 정리/해결하고, 배운 점을 공유해 팀 전체의 생산성과 학습 속도에 기여하겠습니다.'
 					}
 				]
 			},
@@ -127,7 +181,7 @@ export const experiences: Experience[] = [
 					'10개의 실제 운영중인 의원에 개발한 프로젝트를 배포하여 각 병원에게 VOC를 수집하여 진료업무 관련 이슈 해결',
 					'진료 메인: 팝업으로도 쓸 수 있게 화면을 나누고, 컴포넌트 간 공유 데이터는 Svelte store 한곳에서 읽고 갱신하도록 일괄 정리'
 				],
-				skills: ['Svelte', 'SvelteKit', 'Axios', 'TailwindCSS'],
+				skills: ['GPT', 'Svelte', 'SvelteKit', 'Axios', 'TailwindCSS'],
 				additionalSections: [
 					{
 						title: '아쉬운 점',
@@ -158,10 +212,10 @@ export const experiences: Experience[] = [
 				workSplit: { frontend: 95, backend: 5 },
 				achievements: [
 					'진료 페이지의 메인 컴포넌트 개발 및 로직 개선처리',
-					'데스크에서 바뀐 환자 상태를 진료·다른 화면의 브라우저에 실시간으로 맞추기 위해 Redis pub/sub과 WebSocket을 연동',
+					'데스크에서 바뀐 환자 상태를 진료/다른 화면의 브라우저에 실시간으로 맞추기 위해 Redis pub/sub과 WebSocket을 연동',
 					'@근거 클라우드에서 앱 서버가 여러 대이면, 사용자마다 붙는 서버가 달라질 수 있습니다. 한 서버에서만 발생한 변경을 다른 서버에 연결된 브라우저까지 곧바로 알리기 어렵기 때문에, 먼저 Redis pub/sub으로 모든 서버에 같은 이벤트를 알리고, 각 서버가 자기 쪽 WebSocket으로 해당 화면에만 밀어 주는 방식으로 구성했습니다.'
 				],
-				skills: ['Svelte', 'SvelteKit', 'Axios', 'TailwindCSS', 'Redis', 'WebSocket'],
+				skills: ['GPT', 'Svelte', 'SvelteKit', 'Axios', 'TailwindCSS', 'Redis', 'WebSocket'],
 				additionalSections: [
 					{
 						title: '기여한 점',
@@ -188,7 +242,7 @@ export const experiences: Experience[] = [
 					'RealGrid2 라이브러리를 Svelte 프로젝트에 import 및 공통화 진행',
 					'진료 frontend 메인 구조 설계 및 메인 컴포넌트 구현'
 				],
-				skills: ['Svelte', 'SvelteKit', 'Axios', 'TailwindCSS'],
+				skills: ['GPT', 'Svelte', 'SvelteKit', 'Axios', 'TailwindCSS'],
 				additionalSections: [
 					{
 						title: '업무 기여도',
@@ -209,8 +263,8 @@ export const experiences: Experience[] = [
 				workSplit: { frontend: 20, backend: 80 },
 				achievements: [
 					'Vue.js, Svelte, Spring Boot, Java 학습',
-					'KOSMOS: 공공데이터포털 오픈 API로 상장·시세 데이터 적재, Jsoup 기반 네이버 금융 크롤링, 회원·검색·즐겨찾기·종목별 커뮤니티·차트(Chart.js) 등을 Vue 3·Vite 프론트와 연동',
-					'백엔드는 Spring Boot 3에서 WebFlux·MVC 혼용, R2DBC(MariaDB), REST·GraphQL(이동평균선 등), Spring Security·JWT로 구현'
+					'KOSMOS: 공공데이터포털 오픈 API로 상장/시세 데이터 적재, Jsoup 기반 네이버 금융 크롤링, 회원/검색/즐겨찾기/종목별 커뮤니티/차트(Chart.js) 등을 Vue 3/Vite 프론트와 연동',
+					'백엔드는 Spring Boot 3에서 WebFlux/MVC 혼용, R2DBC(MariaDB), REST/GraphQL(이동평균선 등), Spring Security/JWT로 구현'
 				],
 				skills: [
 					'Vue 3',
@@ -315,23 +369,31 @@ export const educations: Education[] = [
 
 export const articles: Article[] = [
 	{
-		title: 'KIMES 2026 전시 출품·통합테스트 기반 진료 화면 개선',
+		title: 'CloudX 진료 메인 원 버튼/진료기록 조회/저장/진료완료 프로세스 구현',
+		date: '2026.10'
+	},
+	{
+		title: 'OneClick Tx/PI 데이터 마이그레이션과 소개자 다이어그램 설계/구현',
+		date: '2026.06'
+	},
+	{
+		title: 'KIMES 2026 전시 출품/통합테스트 기반 진료 화면 개선',
 		date: '2026.03'
 	},
 	{
-		title: '그룹처방·DockView·splitbar 기반 진료 메인 레이아웃 설계 및 개인 프로젝트 역량 보강',
+		title: '그룹처방/DockView/splitbar 기반 진료 메인 레이아웃 설계 및 개인 프로젝트 역량 보강',
 		date: '2025.12'
 	},
 	{
-		title: '진료 VOC·Svelte 5 전환 후 테스트 이슈 일괄 대응과 상병·처방 Grid 고도화',
+		title: '진료 VOC/Svelte 5 전환 후 테스트 이슈 일괄 대응과 상병/처방 Grid 고도화',
 		date: '2025.10'
 	},
 	{
-		title: '그룹처방 도입에 따른 처방 유입 경로 공통화·DockView·splitpanes 도입',
+		title: '그룹처방 도입에 따른 처방 유입 경로 공통화/DockView/splitpanes 도입',
 		date: '2025.08'
 	},
 	{
-		title: '내과·소아청소년과 EMR 실배포·VOC 대응과 진료 메인 팝업·Svelte store 구조 정리',
+		title: '내과/소아청소년과 EMR 실배포/VOC 대응과 진료 메인 팝업/Svelte store 구조 정리',
 		date: '2025.06'
 	},
 	{
