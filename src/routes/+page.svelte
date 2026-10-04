@@ -126,8 +126,7 @@
 	<!-- Footer -->
 	<footer class="border-t border-gray-200 bg-white py-8 print:mt-2 print:border-t-0 print:py-0 print:pt-2 print:text-xs">
 		<div class="container mx-auto px-4 text-center text-sm text-gray-600 print:max-w-none">
-			<p>© 2025 {profile.name}. All rights reserved.</p>
-			<p class="no-print mt-2">Built with SvelteKit & TailwindCSS</p>
+			<p>© {profile.name}. All rights reserved.</p>
 		</div>
 	</footer>
 </div>
